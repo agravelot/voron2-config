@@ -61,3 +61,23 @@ path = /home/agravelot/klipper_z_calibration
 origin = https://github.com/protoloft/klipper_z_calibration.git
 managed_services = klipper
 
+[notifier print_start]
+url = discord://Moonraker@1094750343184793711/ic-NkXkWTImjf1tDSFDr_-wBNXg344s-GLC0DkcVYvLkAy2GBX6u4gDAo00Mg36cPEvi?avatar_url=https://i.imgur.com/FsEpmwg.jpeg
+events = started
+body = Your printer started printing '{event_args[1].filename}'
+
+[notifier print_complete]
+url = discord://Moonraker@1094750343184793711/ic-NkXkWTImjf1tDSFDr_-wBNXg344s-GLC0DkcVYvLkAy2GBX6u4gDAo00Mg36cPEvi?avatar_url=https://i.imgur.com/FsEpmwg.jpeg
+events = complete
+body = Your printer completed printing '{event_args[1].filename}'
+
+[notifier print_error]
+url = discord://Moonraker@1094750343184793711/ic-NkXkWTImjf1tDSFDr_-wBNXg344s-GLC0DkcVYvLkAy2GBX6u4gDAo00Mg36cPEvi?avatar_url=https://i.imgur.com/FsEpmwg.jpeg
+events = error
+body = {event_args[1].message}
+
+[notifier my_discord_notifier]
+url = discord://Moonraker@1094750343184793711/ic-NkXkWTImjf1tDSFDr_-wBNXg344s-GLC0DkcVYvLkAy2GBX6u4gDAo00Mg36cPEvi?avatar_url=https://i.imgur.com/FsEpmwg.jpeg
+events = gcode
+body = {event_message}
+
