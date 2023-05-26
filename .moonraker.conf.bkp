@@ -67,6 +67,25 @@ path = ~/crowsnest
 origin = https://github.com/mainsail-crew/crowsnest.git
 install_script = tools/install.sh
 
+[update_manager timelapse]
+type = git_repo
+primary_branch = main
+path = ~/moonraker-timelapse
+origin = https://github.com/mainsail-crew/moonraker-timelapse.git
+managed_services = klipper moonraker
+
+[update_manager LinearMovementAnalysis]
+type = git_repo
+path = ~/klipper_linear_movement_analysis
+primary_branch = main
+origin = https://github.com/worksasintended/klipper_linear_movement_analysis.git
+install_script = install.sh
+env = ~/klippy-env/bin/python
+requirements = requirements.txt
+is_system_service = False
+managed_services = 
+	klipper
+
 [notifier print_start]
 url = discord://Moonraker@1094750343184793711/ic-NkXkWTImjf1tDSFDr_-wBNXg344s-GLC0DkcVYvLkAy2GBX6u4gDAo00Mg36cPEvi?avatar_url=https://i.imgur.com/FsEpmwg.jpeg
 events = started
