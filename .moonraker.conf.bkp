@@ -28,6 +28,10 @@ cors_domains =
 
 [history]
 
+[timelapse]
+output_path = ~/printer_data/timelapse/
+frame_path = /tmp/timelapse/printer
+
 [update_manager]
 channel = dev
 enable_auto_refresh = False
@@ -85,6 +89,14 @@ requirements = requirements.txt
 is_system_service = False
 managed_services = 
 	klipper
+
+[update_manager Klipper-Adaptive-Meshing-Purging]
+type = git_repo
+channel = dev
+path = ~/Klipper-Adaptive-Meshing-Purging
+origin = https://github.com/kyleisah/Klipper-Adaptive-Meshing-Purging.git
+managed_services = klipper
+primary_branch = main
 
 [notifier print_start]
 url = discord://Moonraker@1094750343184793711/ic-NkXkWTImjf1tDSFDr_-wBNXg344s-GLC0DkcVYvLkAy2GBX6u4gDAo00Mg36cPEvi?avatar_url=https://i.imgur.com/FsEpmwg.jpeg
