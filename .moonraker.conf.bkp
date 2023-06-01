@@ -118,3 +118,11 @@ url = discord://Moonraker@1094750343184793711/ic-NkXkWTImjf1tDSFDr_-wBNXg344s-GL
 events = gcode
 body = {event_message}
 
+[update_manager sonar]
+type = git_repo
+path = ~/sonar
+origin = https://github.com/mainsail-crew/sonar.git
+primary_branch = main
+managed_services = sonar
+install_script = tools/install.sh
+
