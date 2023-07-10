@@ -1,26 +1,26 @@
-#!/bin/bash
+#!/usr/bin/bash
 
+NOW="$(date +%Y%m%d_%H%M%S)"
+DIR=~/printer_data/config/input_shaper_history/${NOW}
+ALL_FILES=($(find /tmp -type f -readable -name "*.csv"))
 
-NOW=$(date +"%Y_%m_%d_%I_%M_%p")
-DIR="/home/agravelot/printer_data/config/input_shaper_history/${NOW}"
-
-X_FILES=$(/tmp/calibration_data_x_*.csv)
-Y_FILES=$(/tmp/calibration_data_y_*.csv)
-
-if [[ ! -f "$X_FILES" && ! -f "$Y_FILES" ]]
-then 
+if [[ -z "$ALL_FILES" ]]
+then
 	echo "No matching csv calibration files avialable."
 	exit 1
 fi
 
-if [[ -f "$X_FILES" ]]
+if [[ ! -d "$DIR" ]]
 then
-	~/klipper/scripts/calibrate_shaper.py /tmp/calibration_data_x_*.csv -o ${DIR}/shaper_calibrate_x_${NOW}.png
-	mv /tmp/calibration_data_x_*.csv ${DIR}
+    mkdir -p "$DIR"
 fi
 
-if [[ -f "$Y_FILES" ]]
-then
-        ~/klipper/scripts/calibrate_shaper.py /tmp/calibration_data_y_*.csv -o ${DIR}/shaper_calibrate_y_${NOW}.png
-        mv /tmp/calibration_data_y_*.csv ${DIR}
-fi
+for i in "${ALL_FILES[@]}"
+do
+	echo "Processing: $i"
+	# https://github.com/Frix-x/klippain/blob/67f6bb91b8e54ef516c7c6e724abe913f7c41dbb/scripts/plot_graphs.sh
+	# graph_accelerometer -> A/b
+	# graph_vibrations -> vibrations
+	~/klipper/scripts/calibrate_shaper.py "$i" -o ${DIR}/${i##*/}${NOW}.png
+	mv "$i" ${DIR}
+done
