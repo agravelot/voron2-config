@@ -155,3 +155,10 @@ managed_services = klipper
 primary_branch = main
 install_script = install.sh
 
+[update_manager klippain]
+type = git_repo
+path = ~/klippain
+origin = https://github.com/Frix-x/klippain.git
+managed_services = klipper
+primary_branch = main
+
