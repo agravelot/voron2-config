@@ -1,0 +1,58 @@
+[mcu EBBCan]
+# serial: /dev/serial/by-id/usb-Klipper_Klipper_firmware_12345-if00
+canbus_uuid: de2f42d3cb5a
+
+[temperature_sensor EBB_NTC]
+sensor_type: Generic 3950
+sensor_pin: EBBCan: PA2
+
+# [extruder]
+# step_pin: EBBCan: PD0
+# dir_pin: !EBBCan: PD1
+# enable_pin: !EBBCan: PD2
+# microsteps: 16
+# rotation_distance: 33.500
+# nozzle_diameter: 0.400
+# filament_diameter: 1.750
+# heater_pin: EBBCan: PB13
+# sensor_type: EPCOS 100K B57560G104F
+# sensor_pin: EBBCan: PA3
+# control: pid
+# pid_Kp: 21.527
+# pid_Ki: 1.063
+# pid_Kd: 108.982
+# min_temp: 0
+# max_temp: 250
+
+# [tmc2240 extruder]
+# cs_pin: EBBCan: PA15
+# spi_software_sclk_pin: EBBCan: PB10
+# spi_software_mosi_pin: EBBCan: PB11
+# spi_software_miso_pin: EBBCan: PB2
+# driver_TPFD: 0
+# run_current: 0.650
+# stealthchop_threshold: 999999
+
+# [fan]
+[fan_generic test_fan]
+pin: EBBCan: PA1
+kick_start_time: 0.5
+##  Depending on your fan, you may need to increase this value
+##  if your fan will not start. Can change cycle_time (increase)
+##  if your fan is not able to slow down effectively
+off_below: 0.10
+
+# [heater_fan hotend_fan]
+# pin: EBBCan: PA0
+# heater: extruder
+# heater_temp: 50.0
+
+[heater_fan ebb_hotend_fan]
+pin: EBBCan: PB14
+tachometer_pin: EBBCan: PB15
+tachometer_ppr: 1
+heater: extruder
+heater_temp: 50.0
+
+# [neopixel hotend_rgb]
+# pin: EBBCan:PD3

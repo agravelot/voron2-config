@@ -33,6 +33,10 @@ cors_domains =
 output_path = ~/printer_data/timelapse/
 frame_path = /tmp/timelapse/printer
 
+[spoolman]
+server = http://127.0.0.1:7912
+sync_rate = 5
+
 [update_manager]
 channel = dev
 enable_auto_refresh = True
