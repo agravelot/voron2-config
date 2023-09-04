@@ -32,6 +32,7 @@ cors_domains =
 [timelapse]
 output_path = ~/printer_data/timelapse/
 frame_path = /tmp/timelapse/printer
+wget_skip_cert_check = True
 
 [spoolman]
 server = http://127.0.0.1:7912
