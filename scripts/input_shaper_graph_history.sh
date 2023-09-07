@@ -21,6 +21,8 @@ do
 	# https://github.com/Frix-x/klippain/blob/67f6bb91b8e54ef516c7c6e724abe913f7c41dbb/scripts/plot_graphs.sh
 	# graph_accelerometer -> A/b
 	# graph_vibrations -> vibrations
+    echo "Generating graph into: ${DIR}"
 	~/klipper/scripts/calibrate_shaper.py "$i" -o ${DIR}/${i##*/}${NOW}.png
+    echo "Moved csv into: ${DIR}"
 	mv "$i" ${DIR}
 done
