@@ -168,3 +168,9 @@ origin = https://github.com/Frix-x/klippain.git
 managed_services = klipper
 primary_branch = main
 
+[update_manager katapult]
+type = git_repo
+path = ~/katapult
+origin = https://github.com/Arksine/katapult.git
+is_system_service = False
+
