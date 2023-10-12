@@ -35,7 +35,7 @@ frame_path = /tmp/timelapse/printer
 wget_skip_cert_check = True
 
 [spoolman]
-server = http://127.0.0.1:7912
+server = http://voron2.local:7912
 sync_rate = 5
 
 [update_manager]
