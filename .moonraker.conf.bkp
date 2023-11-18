@@ -174,3 +174,11 @@ path = ~/katapult
 origin = https://github.com/Arksine/katapult.git
 is_system_service = False
 
+[update_manager klipper_auto_speed]
+type = git_repo
+path = ~/klipper_auto_speed
+origin = https://github.com/anonoei/klipper_auto_speed.git
+primary_branch = main
+install_script = install.sh
+managed_services = klipper
+
