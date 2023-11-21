@@ -9,12 +9,12 @@ sudo service klipper stop
 cd ~/klipper
 #git pull
 
+
+# Octopus
 # reboot in bootloader
 cd ~/klipper/scripts
 python3 -c 'import flash_usb as u; u.enter_bootloader("/dev/serial/by-id/usb-Klipper_stm32f446xx_280020001551313133353932-if00")'
 cd -
-
-# Octopus
 echo $DIR/octopus.config
 make clean KCONFIG_CONFIG=$DIR/octopus.config
 #make menuconfig KCONFIG_CONFIG=$DIR/octopus.config
@@ -23,6 +23,22 @@ make KCONFIG_CONFIG=$DIR/octopus.config -j$(nproc)
 
 make KCONFIG_CONFIG=$DIR/octopus.config flash FLASH_DEVICE=/dev/serial/by-id/usb-katapult_stm32f446xx_280020001551313133353932-if00
 #read -p "Octopus firmware flashed, please check above for any errors. Press [Enter] to continue, or [Ctrl+C] to abort"
+
+# LIS2DW
+
+# reboot in bootloader
+cd ~/klipper/scripts
+python3 -c 'import flash_usb as u; u.enter_bootloader("/dev/serial/by-id/usb-Klipper_rp2040_btt_acc-if00")'
+cd -
+
+echo $DIR/lis2dw.config
+make clean KCONFIG_CONFIG=$DIR/lis2dw.config
+#make menuconfig KCONFIG_CONFIG=$DIR/lis2dw.config
+make KCONFIG_CONFIG=$DIR/lis2dw.config -j$(nproc)
+#read -p "LIS2DW firmware built, please check above for any errors. Press [Enter] to continue flashing, or [Ctrl+C] to abort"
+
+make KCONFIG_CONFIG=$DIR/lis2dw.config flash FLASH_DEVICE=2e8a:0003
+#read -p "LIS2DW firmware flashed, please check above for any errors. Press [Enter] to continue, or [Ctrl+C] to abort"
 
 
 # Rpi
