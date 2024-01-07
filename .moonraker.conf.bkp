@@ -24,6 +24,7 @@ cors_domains =
 	*://localhost:*
 	*://my.mainsail.xyz
 	*://app.fluidd.xyz
+	https://klippylyzer.github.io
 
 [octoprint_compat]
 
