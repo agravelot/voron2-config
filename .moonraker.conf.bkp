@@ -39,6 +39,10 @@ wget_skip_cert_check = True
 server = http://voron2.local:7912
 sync_rate = 5
 
+[announcements]
+subscriptions = 
+	mainsail
+
 [update_manager]
 channel = dev
 enable_auto_refresh = True
