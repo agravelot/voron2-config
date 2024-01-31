@@ -25,6 +25,7 @@ cors_domains =
 	*://my.mainsail.xyz
 	*://app.fluidd.xyz
 	https://klippylyzer.github.io
+enable_api_key = True
 
 [octoprint_compat]
 
