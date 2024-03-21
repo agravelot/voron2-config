@@ -15,12 +15,14 @@ trusted_clients =
 	169.254.0.0/16
 	172.16.0.0/12
 	192.168.0.0/16
+	192.168.0.0/24
 	FE80::/10
 	::1/128
 cors_domains = 
 	*.lan
 	*.local
 	*://localhost
+	*://*.agravelot.eu
 	*://localhost:*
 	*://my.mainsail.xyz
 	*://app.fluidd.xyz
@@ -30,6 +32,8 @@ enable_api_key = True
 [octoprint_compat]
 
 [history]
+
+[secrets]
 
 [timelapse]
 output_path = ~/printer_data/timelapse/
@@ -109,26 +113,6 @@ path = ~/Klipper-Adaptive-Meshing-Purging
 origin = https://github.com/kyleisah/Klipper-Adaptive-Meshing-Purging.git
 managed_services = klipper
 primary_branch = main
-
-[notifier print_start]
-url = discord://Moonraker@1094750343184793711/ic-NkXkWTImjf1tDSFDr_-wBNXg344s-GLC0DkcVYvLkAy2GBX6u4gDAo00Mg36cPEvi?avatar_url=https://i.imgur.com/FsEpmwg.jpeg
-events = started
-body = Your printer started printing '{event_args[1].filename}'
-
-[notifier print_complete]
-url = discord://Moonraker@1094750343184793711/ic-NkXkWTImjf1tDSFDr_-wBNXg344s-GLC0DkcVYvLkAy2GBX6u4gDAo00Mg36cPEvi?avatar_url=https://i.imgur.com/FsEpmwg.jpeg
-events = complete
-body = Your printer completed printing '{event_args[1].filename}'
-
-[notifier print_error]
-url = discord://Moonraker@1094750343184793711/ic-NkXkWTImjf1tDSFDr_-wBNXg344s-GLC0DkcVYvLkAy2GBX6u4gDAo00Mg36cPEvi?avatar_url=https://i.imgur.com/FsEpmwg.jpeg
-events = error
-body = {event_args[1].message}
-
-[notifier my_discord_notifier]
-url = discord://Moonraker@1094750343184793711/ic-NkXkWTImjf1tDSFDr_-wBNXg344s-GLC0DkcVYvLkAy2GBX6u4gDAo00Mg36cPEvi?avatar_url=https://i.imgur.com/FsEpmwg.jpeg
-events = gcode
-body = {event_message}
 
 [update_manager sonar]
 type = git_repo
