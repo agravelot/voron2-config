@@ -111,3 +111,35 @@ gcode:
 [probe]
 activate_gcode:
   _ON_ACTIVATE_PROBE
+
+# https://github.com/DW-Tas/voron2.4r2backup/blob/3d965ff83bbe632b5524192340c3f253da48f70f/printer.cfg#L259
+[probe]
+pin: ^PG15
+x_offset: 0
+# y_offset: 17.11 # SB
+# y_offset: 26.72 # Xol 2 long
+# y_offset: 26.57 # Xol 2 short switch
+y_offset: 0 #Klciky 00
+# z_offset: 0
+# speed: 5
+# samples:3 
+# samples_result: median
+# sample_retract_dist: 2.0
+# # samples_tolerance: 0.01
+# samples_tolerance: 0.005
+# samples_tolerance_retries: 3
+speed: 12
+lift_speed: 24
+samples: 3
+samples_result: median
+sample_retract_dist: .4
+# sample_retract_dist: .8
+# sample_retract_dist: 1.2
+samples_tolerance: 0.007
+samples_tolerance_retries: 5
+# activate_gcode:
+#   _ON_ACTIVATE_PROBE
+
+
+[stepper_z]
+homing_retract_dist: 3
