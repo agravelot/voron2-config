@@ -2,10 +2,11 @@
 
 set -xe  # Exit on error and print commands
 
-DIR="$(pwd)"
+DIR=~/printer_data/config/scripts
 KLIPPER_DIR=~/klipper
 KLIPPER_SCRIPTS="$KLIPPER_DIR/scripts"
 KATAPULT_SCRIPTS=~/katapult/scripts
+
 
 RUN_MENUCONFIG=false  # Default: do not run menuconfig
 
@@ -27,13 +28,14 @@ build() {
 
     echo "Building firmware for $config_file"
     cd $KLIPPER_DIR
-    make clean KCONFIG_CONFIG="$config_file"
-    
+    env KCONFIG_CONFIG="$config_file" make clean
+
     if $RUN_MENUCONFIG; then
-        make menuconfig KCONFIG_CONFIG="$config_file"
+        env KCONFIG_CONFIG="$config_file" make menuconfig 
     fi
 
-    make KCONFIG_CONFIG="$config_file" -j"$(nproc)"
+    #env KCONFIG_CONFIG=/home/agravelot/printer_data/config/scripts/octopus.config make -j"$(nproc)"
+    env KCONFIG_CONFIG="$config_file" make -j"$(nproc)"
 }
 
 flash_usb() {
@@ -42,8 +44,8 @@ flash_usb() {
 
     echo "Flashing firmware for $config_file"
     cd $KLIPPER_DIR
-   
-    make KCONFIG_CONFIG="$config_file" flash FLASH_DEVICE="$flash_device"
+
+    env KCONFIG_CONFIG="$config_file" make flash FLASH_DEVICE="$flash_device"
 }
 
 flash_can() {
@@ -70,9 +72,14 @@ enter_bootloader() {
 stop_klipper
 
 # Octopus
-enter_bootloader "/dev/serial/by-id/usb-Klipper_stm32f446xx_280020001551313133353932-if00"
+#enter_bootloader "/dev/serial/by-id/usb-Klipper_stm32f446xx_280020001551313133353932-if00"
+#build "$DIR/octopus.config"
+#flash_usb "$DIR/octopus.config" "/dev/serial/by-id/usb-katapult_stm32f446xx_280020001551313133353932-if00"
+
+# Octopus Pro
+enter_bootloader "/dev/serial/by-id/usb-Klipper_stm32f446xx_290020000450534E4E313020-if00"
 build "$DIR/octopus.config"
-flash_usb "$DIR/octopus.config" "/dev/serial/by-id/usb-katapult_stm32f446xx_280020001551313133353932-if00"
+flash_usb "$DIR/octopus.config" "/dev/serial/by-id/usb-katapult_stm32f446xx_290020000450534E4E313020-if00"
 
 # LIS2DW (uncomment to enable)
 # enter_bootloader "/dev/serial/by-id/usb-Klipper_rp2040_btt_acc-if00"
